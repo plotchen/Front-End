@@ -537,3 +537,14 @@ git push -u origin master  //-u的参数让git记录信息，下次只需要 git
 ssh-keygen  //生成一对密钥
 ```
 
+1. 保证项目文件夹中有.git的文件夹
+2. **git status** 查看当前项目文件夹的各个文件的状态
+3. **git add .** 将本地所有文件添加准备提交到暂存区
+4. **git commit -m 备注信息**  将本地文件提交到暂存区
+5. **git remote add origin  自己仓库的地址**
+6. **git push -u origin master**
+7. 注意: 如果看到了 **fatal**  致命的错误  `git remote remove origin` 先将远端关联断开 ,再重新执行 5 6
+
+## 分支
+
+ 项目根目录中创建login分支 `git checkout -b login`  创建login分支并切换到login分支上
