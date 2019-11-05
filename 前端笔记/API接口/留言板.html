@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>留言板</title>
+    <style>
+        .box {
+            border: 1px solid #eee;
+            border-radius: 25px;
+            box-shadow: 0 2px 12px -6px #000;
+            padding: 25px;
+        }
+
+        .input textarea {
+            border: 1px solid #c1d8ac;
+            padding: 24px;
+            border-radius: 23px;
+            background-color: #f1f7ed;
+            width: calc(100% - 50px);
+            max-width: 100%;
+            /* min-width: 100%; */
+            outline: none;
+            min-height: 200px;
+            font-size: 28px;
+            color: #3e6d08;
+            margin-bottom: 20px;
+        }
+
+        .input button {
+            outline: none;
+            border: 1px solid #c1d8ac;
+            background-color: #eaf5e0;
+            font-size: 24px;
+            line-height: 60px;
+            width: 100%;
+            border-radius: 12px;
+            color: #31550e;
+            box-shadow: 0 2px 10px -6px #3e6d08;
+            transform: scale(.92);
+            transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.975);
+        }
+
+        .input button:hover {
+            transform: scale(1);
+            background-color: #e3f3d5;
+            box-shadow: 0 2px 19px -12px #3e6d08;
+        }
+
+        .msg {
+            margin-top: 20px;
+            color: #31550e;
+            font-size: 26px;
+            transform: scale(.96);
+            transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .msg:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 20px -9px #000;
+        }
+    </style>
+</head>
+<body>
+    <main style="width: 400px; margin: 0 auto;">
+        <div>
+            <div class="box input">
+                <textarea></textarea>
+                <div>
+                    <button>发布留言</button>
+                </div>
+            </div>
+        </div>
+        <div class="message">
+            <div class="box msg">
+                这是默认的一条
+            </div>
+        </div>
+    </main>
+    <script>
+        var input = document.querySelector('textarea');
+        var submit = document.querySelector('button');
+        var msgList = document.querySelector('.message');
+
+        submit.onclick = function(){
+            var text = input.value;
+            if (text === '') {
+                alert('请输入内容！');
+            } else {
+                var newDiv = document.createElement('div');
+                newDiv.className = 'box msg';
+                newDiv.innerHTML = text;
+                msgList.insertBefore(newDiv, msgList.children[0]);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

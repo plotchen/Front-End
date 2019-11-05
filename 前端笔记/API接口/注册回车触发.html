@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="background-color: #acf;">
+        <input type="text" />
+        <input type="text" />
+        <input type="text" />
+    </div>
+    <div><button>注册</button></div>
+    <script>
+        // 模拟提交函数。
+        function submit(){
+            alert('提交成功！');
+        }
+
+        // 拿到页面元素。
+        var div = document.querySelector('div');
+        var btn = document.querySelector('button');
+
+        // 当一个范围捕获到用户按下，且是 回车（Enter:13）则调用提交函数。
+        div.onkeydown = function(e){
+            if (e.keyCode === 13){
+                submit();
+            }
+        }
+
+        btn.onclick = submit;
+    </script>
+</body>
+
+</html>
