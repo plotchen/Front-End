@@ -1,0 +1,23 @@
+       // 闭包: 第一级别:一个作用域访问另外一个作用域里面的变量
+        //       第二级别:一个作用域访问另外一个'函数作用域'里面的变量,'这种现象就是闭包' 
+        // 闭包函数: 闭包现象中访问的变量,所在的函数
+
+
+
+node :当模块没有后缀名时
+require('./find');
+(1)./find.js
+(2)./find/index.js
+(3)./find/package.json
+	main属性:main:"a.js"
+	./find/a.js
+require('find');
+
+
+
+(1)系统模块
+(2)./node_modules/find.js
+(3)./node_modules/find/index.js
+(4)./node_modules/find/package.json
+	main属性:main:"a.js"
+	./node_modules/find/a.js
