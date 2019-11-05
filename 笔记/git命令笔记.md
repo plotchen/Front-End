@@ -548,3 +548,17 @@ ssh-keygen  //生成一对密钥
 ## 分支
 
  项目根目录中创建login分支 `git checkout -b login`  创建login分支并切换到login分支上
+
+
+
+### 登录功能完成 推送分支
+
+1. git branch   查看当前所处的分支  假设在login分支
+2. git add . 
+3. git commit -m 备注信息
+4. git push -u origin 分支名称
+5. 以上4步 将login中的本地分支提交到本地仓库 并将本地login分支推送到远端仓库
+6. 分支合并
+   1. 切换到主分支  git checkout master 
+   2. 合并分支  git merge 分支名称
+   3. 更新master主分支的远端仓库   git push 
