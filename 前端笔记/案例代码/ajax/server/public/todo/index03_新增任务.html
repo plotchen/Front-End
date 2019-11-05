@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Todo List</title>
+		<link rel="stylesheet" href="assets/css/base.css">
+		<link rel="stylesheet" href="assets/css/index.css">
+		<link rel="stylesheet" href="/js/nprogress/nprogress.css">
+	</head>
+	<body>
+		<section class="todoapp">
+			<header class="header">
+				<h1>todos</h1>
+				<input type="text" class="new-todo" placeholder="What needs to be done?" autofocus id="task">
+			</header>
+			<!-- This section should be hidden by default and shown when there are todos -->
+			<section class="main">
+				<input class="toggle-all" type="checkbox">
+				<ul class="todo-list" id="todo-list">
+                    <li class="completed">
+                        <div class="view">
+                            <input class="toggle" type="checkbox" checked>
+                            <label>已完成</label>
+                            <button class="destroy" data-id="1"></button>
+                        </div>
+                        <input class="edit">
+                    </li>
+                    <li class="">
+                        <div class="view">
+                            <input class="toggle" type="checkbox">
+                            <label>未完成</label>
+                            <button class="destroy" data-id="2"></button>
+                        </div>
+                        <input class="edit">
+                    </li>
+                    <li class="editing">
+                        <div class="view">
+                            <input class="toggle" type="checkbox">
+                            <label>未完成</label>
+                            <button class="destroy" data-id="2"></button>
+                        </div>
+                        <input class="edit">
+                    </li>
+                    
+                </ul>
+			</section>
+			<!-- This footer should hidden by default and shown when there are todos -->
+			<footer class="footer">
+				<!-- This should be `0 items left` by default -->
+				<span class="todo-count"><strong id="count">0</strong> item left</span>
+				<!-- Remove this if you don't implement routing -->
+				<ul class="filters">
+					<li>
+						<a class="selected" href="javascript:;">All</a>
+					</li>
+					<li>
+						<a href="javascript:;">Active</a>
+					</li>
+					<li>
+						<a href="javascript:;">Completed</a>
+					</li>
+				</ul>
+				<!-- Hidden if no completed items are left ↓ -->
+				<button class="clear-completed">Clear completed</button>
+			</footer>
+		</section>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/template-web.js"></script>
+        <script src="/js/nprogress/nprogress.js"></script>
+		<!-- 任务列表模板 -->
+		<script type="text/html" id="taskTpl">
+			{{each tasks}}
+			<li>
+				<div class="view">
+					<input class="toggle" type="checkbox">
+					<label>{{$value.title}}</label>
+					<button class="destroy"></button>
+				</div>
+				<input class="edit">
+			</li>
+			{{/each}}
+		</script>        
+    </body>
+    <script>
+// 用于存放任务列表的数组
+var taskAry = [];
+// 选择任务列表容器
+var taskBox = $('#todo-list');
+// 添加任务的文本框
+var taskInp = $('#task');
+// 向服务器端发送请求 获取已经存在的任务
+$.ajax({
+    url: '/todo/task',
+    type: 'get',
+    success: function (response) {
+        // 将已存在的任务存储在taskAry变量中
+        taskAry = response;
+        // 拼接字符串 将拼接好的字符串显示在页面中
+        render();
+    }
+})
+// 获取文本框并且添加键盘抬起事件
+taskInp.on('keyup', function (event) {
+    // 如果用户敲击的是回车键
+    if (event.keyCode == 13) {
+        // 判断用户是否在文本框中输入了任务名称
+        var taskName = $(this).val();
+        // 如果用户没有在文本框中输入内容
+        if (taskName.trim().length == 0) {
+            alert('请输入任务名称')
+            // 阻止代码向下执行
+            return;
+        }
+        // 向服务器端发送请求 添加任务
+        $.ajax({
+            type: 'post',
+            url: '/todo/addTask',
+            contentType: 'application/json',
+            data: JSON.stringify({title: taskName}),//{"title": 10}
+            success: function (response) {
+                // 将任务添加到任务列表中
+                taskAry.push(response);
+                // 拼接字符串 将拼接好的字符串显示在页面中
+                render();
+                // 清空文本框中的内容
+                taskInp.val('');
+            }
+        })
+    }
+});
+
+// 拼接字符串 将拼接好的字符串显示在页面中
+function render() {
+    // 字符串拼接
+    var html = template('taskTpl', {
+        tasks: taskAry
+    });
+    // 将拼接好的字符串显示在ul标签中
+    taskBox.html(html);
+}
+
+    </script>    
+</html>

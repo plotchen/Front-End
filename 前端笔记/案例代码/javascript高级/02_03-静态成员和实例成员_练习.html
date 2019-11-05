@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //成员是类和对象的变量和方法(函数)
+        //静态成员和实例成员
+        Star.prototype.say = function(){
+            console.log('我是'+this.uname)
+        } 
+        function Star(uname, age) {
+            //实例成员的定义
+            this.uname = uname;
+            this.age = age;
+            this.say = Star.prototype.say
+        }
+        var ldh = new Star('刘德华', 18);
+        var zxy = new Star('张学友',19)
+        ldh.say()
+        zxy.say()
+        console.log(ldh.say === zxy.say)
+        // ldh.sex
+    </script>
+</body>
+
+</html>
