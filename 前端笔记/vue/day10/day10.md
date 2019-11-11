@@ -332,7 +332,7 @@ path: '/home', component: Home, redirect: '/welcome', children: [
 #### B.完成组件基本布局
 完成Params.vue组件的基本布局
 其中警告提示信息使用了el-alert，在element.js引入该组件并注册
-```
+```js
 <template>
     <div>
         <h3>分类参数</h3>
@@ -362,7 +362,7 @@ path: '/home', component: Home, redirect: '/welcome', children: [
 ```
 #### C.完成级联选择框
 完成商品分类级联选择框
-```
+```js
 <!-- 选择商品分类区域 -->
 <el-row class="cat_opt">
     <el-col>
@@ -416,7 +416,7 @@ export default {
 ```
 #### D.展示参数
 展示动态参数数据以及静态属性数据
-```
+```js
 <!-- tab页签区域 -->
 <el-tabs v-model="activeName" @tab-click="handleTabClick">
   <!-- 添加动态参数的面板 将标签页改为many -->
@@ -515,7 +515,7 @@ export default {
 ```
 #### E.添加参数
 完成添加参数或属性
-```
+```js
 <!-- 添加参数或属性对话框 -->
 <el-dialog :title="'添加'+titleText" :visible.sync="addDialogVisible" width="50%" @close="addDialogClosed">
   <!-- 添加表单 -->
@@ -574,7 +574,7 @@ export default {
 ```
 #### F.编辑参数
 完成编辑参数或属性
-```
+```js
 <!-- 修改参数或属性对话框 -->
 <el-dialog :title="'修改'+titleText" :visible.sync="editDialogVisible" width="50%" @close="editDialogClosed">
   <!-- 添加表单 -->
@@ -645,7 +645,7 @@ export default {
 
 #### G.删除参数
 删除参数或属性
-```
+```js
 给两个删除按钮添加事件
 <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeParams(scope.row.attr_id)">删除</el-button>
 <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeParams(scope.row.attr_id)">删除</el-button>
@@ -679,3 +679,4 @@ async removeParams(attr_id){
   this.handleChange()
 }
 ```
+
