@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="file" onchange="change()" multiple />
+    <script>
+      // FileReader 是 内置对象  用来读取文件的
+      function change() {
+        const file = document.querySelector("input").files //files上传控件上传的文件列表 数组
+        // 1.创建文件读取对象,一个文件读取对象只能读取一个文件
+        console.log(file)
+        // 1.通过循环的方式创建多个文件读取对象
+        for (let i = 0; i < file.length; i++) {
+          //创建文件读取对象
+          var reader = new FileReader()
+          reader.readAsDataURL(file[i])
+          reader.onload = function() {
+            const img = document.createElement("img")
+            img.src = this.result
+            document.body.appendChild(img)
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

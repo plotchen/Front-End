@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 100px;
+      }
+      div {
+        width: 0;
+        height: 20px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="file" onchange="change()" />
+    <div></div>
+    <script>
+      // FileReader 是 内置对象  用来读取文件的
+      const div = document.querySelector("div")
+      function change() {
+        const file = document.querySelector("input").files[0] //files上传控件上传的文件列表 数组
+        // 1.创建文件读取对象
+        const reader = new FileReader()
+        // 2.读取文件  不需要设置任何返回值
+        reader.readAsDataURL(file)
+        // 3.onload函数中读取完毕 result属性 拿到图片的路径地址 base64路径地址
+        reader.onprogress = function(e) {
+          // loaded加载过后的数据是实时变换
+          //   total总大小
+          div.innerHTML = (e.loaded / e.total).toFixed(2) * 100 + "%"
+          div.style.width = "100%"
+        }
+      }
+    </script>
+  </body>
+</html>

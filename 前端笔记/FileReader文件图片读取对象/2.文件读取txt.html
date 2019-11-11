@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" onchange="change()" />
+    <hr />
+    <button onclick="alert('缓存已清除')">清空缓存</button>
+    <div></div>
+    <script>
+      const div = document.querySelector("div")
+      // FileReader 是 内置对象  用来读取文件的
+      function change() {
+        const file = document.querySelector("input").files //files上传控件上传的文件列表 数组
+        // 1.创建文件读取对象
+        const reader = new FileReader()
+        console.log(reader)
+        // 2.读取文件
+        reader.readAsText(file[0]) //读取文件
+        // 3.读取完成(load)之后.result中获取到读取的数据
+        reader.onload = function() {
+          console.log(reader.result)
+          div.innerHTML = reader.result
+        }
+      }
+    </script>
+  </body>
+</html>
