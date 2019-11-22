@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <p></p>
+    <script>
+      var input = document.querySelector("input")
+      var p = document.querySelector("p")
+      var vm = {
+        msg: "哈喽"
+      }
+      //   Object.defineProperty(监听的对象,监听的属性,配置对象)
+      Object.defineProperty(vm, "msg", {
+        get() {
+          // get是在获取的时候触发
+          console.log("get触发了")
+        },
+        set(val) {
+          // 形参  val  值是设置的最新值
+          // set 是在设置的时候触发
+          console.log("set触发了" + val)
+          //   将获取到的最新的值 设置给 p 和 input
+          //   数据修改视图
+          input.value = val
+          p.innerHTML = val
+        }
+      })
+      //   console.log(obj.a)
+      vm.msg = "abc"
+      // 视图修改数据
+      input.oninput = function(e) {
+        vm.msg = e.target.value
+      }
+    </script>
+  </body>
+</html>

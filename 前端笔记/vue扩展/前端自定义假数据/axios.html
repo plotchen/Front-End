@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      axios.defaults.baseURL = "https://www.easy-mock.com/mock/5dcbe9c25e71c8782d07b432/abc/"
+      // 查 get请求
+      // axios.get("http://localhost:3000/userlist/1").then(res => {
+      //   console.log(res.data)
+      // })
+      // axios.get("userlist").then(res => {
+      //   console.log(res.data)
+      // })
+      // 增
+      //   axios.post("http://localhost:3000/userlist", { uname: "l7", tel: 17889898008 }).then(res => {
+      //     console.log(res.data)
+      //   })
+      // 删
+      //   axios.delete('http://localhost:3000/userlist/5').then(res=>{
+      //       console.log(res.data);
+      //   })
+      // 改
+        // axios.put("http://localhost:3000/userlist/4", { uname: "l9" }).then(res => {
+        //   console.log(res.data)
+        // })
+        // axios.get("username").then(res => {
+        //   console.log(res.data)
+        // })
+        axios.post("password").then(res => {
+          console.log(res.data)
+        })
+    </script>
+  </body>
+</html>

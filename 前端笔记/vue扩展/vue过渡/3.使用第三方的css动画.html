@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- 1.引入animate.css文件 https://daneden.github.io/animate.css/-->
+    <link rel="stylesheet" href="./animate.css">
+  </head>
+  <body>
+    <div id="app">
+      <button @click="flag = !flag">切换</button>
+      <!-- 2.将需要执行过渡的元素 使用transition标签包裹 -->
+      <transition>
+          <!-- <transition enter-active-class="jello animated" leave-active-class="shake animated"> <h2 v-show="flag">标题</h2> </transition> -->
+
+          <!-- 简写 -->
+          <transition enter-active-class="jello" leave-active-class="shake"> <h2 class="animated" v-show="flag">标题</h2> </transition>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          flag: true
+        },
+        methods: {}
+      })
+    </script>
+  </body>
+</html>

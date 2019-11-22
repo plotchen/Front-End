@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      /* 1.定义类名 执行的过渡的行为样式*/
+
+      .v-enter,
+      .v-leave-to {
+        transform: translateY(100px);
+      }
+      /* 执行过程 执行过渡 */
+      .v-enter-active,
+      .v-leave-active {
+        transition: all 0.5s linear;
+      }
+
+      .my-enter,
+      .my-leave-to {
+        transform: translateX(100px);
+      }
+      /* 执行过程 执行过渡 */
+      .my-enter-active,
+      .my-leave-active {
+        transition: all 0.5s linear;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="flag = !flag">切换</button>
+      <!-- 2.将需要执行过渡的元素 使用transition标签包裹 -->
+      <!-- 自定义动画添加 my -->
+      <transition name="my"> <p v-show="flag">文字</p> </transition>
+       <transition> <h2 v-show="flag">标题</h2> </transition>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          flag: true
+        },
+        methods: {}
+      })
+    </script>
+  </body>
+</html>

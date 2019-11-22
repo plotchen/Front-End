@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <p></p>
+    <script>
+      // 修改数据并不会修改到视图,视图虽然数据修改了但是不会同步到食土兽
+      var input = document.querySelector("input")
+      var p = document.querySelector("p")
+      var msg = "哈喽"
+      input.value = msg
+      p.innerHTML = msg
+      // 视图修改数据 并同步到视图
+      input.oninput = function(e) {
+        msg = e.target.value
+        input.value = msg
+        p.innerHTML = msg
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <input type="button" value="按钮" @click="add" /> <input type="text" v-model="name" />
+    <li v-for="(item,index) in list"><input type="checkbox" :key="index" /><span>{{item.name}}</span> --
+      <span>{{item.id}}</span></li>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        name: "",
+        list: [{ id: 1, name: "z3" }, { id: 2, name: "l4" }, { id: 3, name: "w5" }, { id: 4, name: "z6" }]
+      },
+      methods: {
+        add() {
+          this.list.unshift({ id: this.list[this.list.length - 1].id + 1, name: this.name })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
