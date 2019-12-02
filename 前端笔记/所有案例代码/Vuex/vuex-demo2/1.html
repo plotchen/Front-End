@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- vue.js 引入 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    first name: <input type="text" v-model="firstName">
+    <br>
+    second name: <input type="text" v-model="lastName">
+    <br>
+    full name: <div>{{fullName}}</div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data () {
+        return {
+          firstName: '',
+          lastName: ''
+        }
+      },
+      computed: {
+        // 输入firstName和lastName自动拼成fullName
+        // 方法：1
+        /*fullName: function () {
+          return this.firstName + ' ' + this.lastName
+        }*/
+        // 方法：2
+        /*fullName: {
+          get: function () {
+            return this.firstName + ' ' + this.lastName
+          }
+        }*/
+
+        // 输入fullName后自动拆分成两个name
+        fullName: {
+          get: function () {
+            return this.firstName + ' ' + this.lastName
+          },
+          set: function (fullName) {
+            var arr = fullName.split(' ');
+            // 以空格来分，将一个字符串分割成了两个字符串
+            this.firstName = arr[0]
+            this.lastName = arr[1]
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
