@@ -562,3 +562,15 @@ ssh-keygen  //生成一对密钥
    1. 切换到主分支  git checkout master 
    2. 合并分支  git merge 分支名称
    3. 更新master主分支的远端仓库   git push 
+
+### 查看自己账户
+
+```git
+git config --global user.name
+git config --global user.email 
+
+
+git push -u origin master //默认推送
+
+```
+
