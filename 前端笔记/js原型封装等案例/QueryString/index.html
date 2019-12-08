@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QueryString手工实现</title>
+</head>
+
+<body>
+    <script>
+        var url = 'http://www.baidu.com/api/v1/user';
+
+        // 参数的对象。
+        var params = {
+            name: 'cxk',
+            age: '22',
+            like: 'sing',
+            other: '跳'
+        };
+
+        var qs = Object.keys(params).map(i => `${ i }=${ encodeURIComponent(params[i]) }`).join('&');
+
+        console.log(url + '?' + qs);
+    </script>
+</body>
+
+</html>

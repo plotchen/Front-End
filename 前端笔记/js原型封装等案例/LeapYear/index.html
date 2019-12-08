@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闰年计算 + 月份输出</title>
+</head>
+
+<body>
+    <script>
+        function getFebDays(year) {
+            return 28 + (!(year % 400) || (year % 100 && !(year % 4)));
+        }
+
+        // const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        //                                         7月  8月
+        //                  0       2      4       6   7
+
+        function getMonthsDaysArray(year){
+            return new Array(12).fill().map(($_, i) => i === 1 ? getFebDays(year) : 30 + ((i < 7 && !(i % 2)) || (i > 6 && i % 2)));
+        }
+
+        const months = new Array(12).fill().map(($_, i) => i === 1 ? getFebDays(2019) : 30 + ((i < 7 && !(i % 2)) || (i > 6 && i % 2)));
+        console.log(months);
+    </script>
+</body>
+
+</html>

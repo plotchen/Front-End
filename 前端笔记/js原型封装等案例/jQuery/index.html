@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        table tr td {
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+    $(function(){
+        $('td:not(:last):not(:lt(15)):odd').text('--').css('background-color', '#fac');
+    });
+    </script>
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

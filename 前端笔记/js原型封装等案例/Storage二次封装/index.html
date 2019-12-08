@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Storage二次封装</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            a: 1,
+            b: 2,
+            c: 'cxk',
+            list: [1, 2, 3, 4, 5, 6]
+        };
+            //封装一个本地或远程储存函数
+
+
+            //在 localStorage 或 sessionStorage里面储存键值对
+        Storage.prototype.$set = function(key, value){
+            this[key] = JSON.stringify(value);
+        };
+        // 拿出 localStorage 或 sessionStorage里面储存键值对
+        Storage.prototype.$get = function(key, defaultValue = {}){
+            const json = this[key];
+            return json ? JSON.parse(json) : defaultValue;
+        };
+
+        console.log(sessionStorage.$get('OPEN_IDDD', ["adfds"]));
+        console.log(localStorage.$set('jijiji',{a: 'adfs'}));
+    </script>
+</body>
+
+</html>

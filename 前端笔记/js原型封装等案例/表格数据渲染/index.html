@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格数据渲染</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <!-- before begin -->
+            <table>
+                <thead>
+
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody></tbody>
+                <!-- before end -->
+            </table>
+            <!-- after end -->
+        </div>
+        <div class="container">
+
+        </div>
+    </div>
+    <script>
+        const keys = [
+            {key: 'id', trans: 'ID'},
+            {key: 'username', trans: '用户名'},
+            {key: 'realName', trans: '真名'}
+        ];
+        // var data = JSON.parse()
+        // 直接从后端拿到的数据结构。
+        const data = [
+            { "id": 1, "username": "DSZ", "realName": "大烧猪", "time": "2019/11/26" },
+            { "id": 2, "realName": "储蓄卡", "username": "CXK",  "time": "2019/11/03" },
+            { "id": 3, "realName": "妥妥的", "username": "TTD", "time": "2019/01/26" },
+        ];
+
+        // 找到表格应该渲染到的对应位置。
+        const container = document.querySelector('.container');
+
+        // 创建表格元素。
+        const table = document.createElement('table');
+
+        container.appendChild(table);
+
+        // 设置表头。
+        const thead = document.createElement('thead');
+        table.appendChild(thead);
+        // 填充表头数据。
+
+        const thead_tr = document.createElement('tr');
+
+        for (let key of keys) {
+            const th = document.createElement('th');
+            th.innerHTML = key.trans;
+            thead_tr.appendChild(th);
+        }
+
+        const operation_th = document.createElement('th');
+        operation_th.innerHTML = '操作'
+        thead_tr.appendChild(operation_th)
+
+        thead.appendChild(thead_tr);
+
+        // 设置表体。
+        const tbody = document.createElement('tbody');
+        // tbody 追加到 表格 中。
+        table.appendChild(tbody);
+        // 填充表体数据。
+        for (let row of data) {
+            const tr = document.createElement('tr');
+
+            for (let key of keys) {
+                // console.log(key);
+                const td = document.createElement('td');
+                td.innerHTML = row[key.key];
+                tr.appendChild(td);
+            }
+
+            // 准备操作部分的布局 按钮 
+            const delete_td =document.createElement('td');
+
+            // 删除按钮实现。
+            const delete_button = document.createElement('button');
+            delete_button.innerHTML = '删除'
+            delete_button.dataset['id'] = row.id;
+            delete_button.addEventListener('click', function(e) {
+                console.log(e.target.dataset['id']);
+            })
+
+            delete_td.appendChild(delete_button);
+
+            tr.appendChild(delete_td);
+
+            tbody.appendChild(tr);
+        }
+
+        // 把表格渲染到对应位置。
+    </script>
+</body>
+
+</html>

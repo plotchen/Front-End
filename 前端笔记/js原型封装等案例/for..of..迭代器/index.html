@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for of 迭代</title>
+</head>
+
+<body>
+    <script>
+        var arr = [1, 2, 3, 4, 5];
+
+        // 数组的实现
+        var arrOrigin = {
+            0: 1,
+            1: 2,
+            2: 3,
+            length: 3
+        }
+
+        // for of 循环遍历。
+        for (let item of arr) {
+            console.log(item);
+        }
+
+        var objArr = [
+            { a: 1, b: 2 },
+            { a: 7, b: 14 },
+            { a: 0, b: -14 }
+        ];
+
+        for (let item of objArr) {
+            const { a } = item;
+            console.log(a);
+        }
+    </script>
+</body>
+
+</html>
