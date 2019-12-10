@@ -1260,3 +1260,647 @@ class Child2 extends React.Component {
 - 场景：分页组件 -> 每页显示条数
 
 ![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day02/%E7%AC%94%E8%AE%B0/images/props%E9%BB%98%E8%AE%A4%E5%80%BC.png)
+
+## 目标
+
+- 说出组件生命周期对应的钩子函数
+- 钩子函数调用的时机
+
+## 概述
+
+意义：组件的生命周期有助于理解组件的运行方式，完成更复杂的组件功能、分析组件错误原因等
+
+组件的生命周期： 组件从被创建到挂载到页面中运行，再到组件不在时卸载的过程
+
+生命周期的每个阶段总是伴随着一些方法调用，这些方法就是生命周期的钩子函数
+
+构造函数的作用：为开发人员在不同阶段操作组件提供了实际
+
+## 生命周期阶段
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png)
+
+### 创建时（挂载阶段）
+
+- 执行时机：组件创建时（页面加载时）
+- 执行顺序
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E5%88%9B%E5%BB%BA%E6%97%B6-%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F.png)
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E5%88%9B%E5%BB%BA%E6%97%B6-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8.png)
+
+### 更新时
+
+执行时机：`setState()、 forceUpdate()、 组件接收到新的props`
+
+说明：以上三者任意一种变化，组件就会重新渲染
+
+执行顺序：
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E6%9B%B4%E6%96%B0%E6%97%B6.png)
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E6%9B%B4%E6%96%B0%E6%97%B6-%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8.png)
+
+### 卸载时
+
+执行时机：组件从页面中消失
+
+作用：用来做清理操作
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E5%8D%B8%E8%BD%BD%E6%97%B6.png)
+
+### 不常用的钩子函数
+
+#### 旧版的生命周期钩子函数
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E6%97%A7%E7%89%88%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0.png)
+
+#### 新版完整生命会走棋钩子函数
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E6%96%B0%E7%89%88%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0.png)
+
+##### `getDerivedStateFromProps()`
+
+- **`getDerivedStateFromProps`** 会在调用 render 方法之前调用，并且在初始挂载及后续更新时都会被调用。它应返回一个对象来更新 state，如果返回 null 则不更新任何内容
+- 不管原因是什么，都会在*每次*渲染前触发此方法
+
+##### `shouldComponentUpdate()`
+
+- 根据 **`shouldComponentUpdate()`** 的返回值，判断 React 组件的输出是否受当前 state 或 props 更改的影响。默认行为是 state 每次发生变化组件都会重新渲染
+- 当 props 或 state 发生变化时，**`shouldComponentUpdate()`** 会在渲染执行之前被调用。返回值默认为 true
+
+##### `getSnapshotBeforeUpdate()`
+
+- **`getSnapshotBeforeUpdate()`** 在最近一次渲染输出（提交到 DOM 节点）之前调用。它使得组件能在发生更改之前从 DOM 中捕获一些信息（例如，滚动位置）。此生命周期的任何返回值将作为参数传递给 **`componentDidUpdate()`**
+- 此用法并不常见，但它可能出现在 UI 处理中，如需要以特殊方式处理滚动位置的聊天线程等
+
+# render-props模式 （★★★）
+
+## 目标
+
+- 知道render-props模式有什么作用
+- 能够说出render-props的使用步骤
+
+## React组件复用概述
+
+- 思考：如果两个组件中的部分功能相似或相同，该如何处理？
+- 处理方式：复用相似的功能
+- 复用什么？
+  - state
+  - 操作state的方法
+- 两种方式：
+  - render props模式
+  - 高阶组件（HOC）
+- 注意： 这两种方式不是新的API，而是利用React自身特点的编码技巧，演化而成的固定模式
+
+## 思路分析
+
+- 思路：将要复用的state和操作state的方法封装到一个组件中
+
+- 如何拿到该组件中复用的state
+
+  - 在使用组件时，添加一个值为函数的prop，通过函数参数来获取
+
+    ![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/render-props-01.png)
+
+- 如何渲染到任意的UI
+
+  - 使用该函数的返回值作为要渲染的UI内容
+
+    ![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/render-props-02.png)
+
+## 使用步骤
+
+- 创建Mouse组件，在组件中提供复用的逻辑代码
+- 将要复用的状态作为 props.render(state)方法的参数，暴露到组件外部
+- 使用props.render() 的返回值作为要渲染的内容
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/render-props%E6%A8%A1%E5%BC%8F-01.png)
+
+#### 示例demo
+
+```react
+class Mouse extends React.Component {
+    // 鼠标位置状态
+    state = {
+        x: 0,
+        y: 0
+    }
+
+    // 监听鼠标移动事件
+    componentDidMount(){
+        window.addEventListener('mousemove',this.handleMouseMove)
+    }
+    handleMouseMove = e => {
+        this.setState({
+            x: e.clientX,
+            y: e.clientY
+        })
+    }
+    render(){
+        // 向外界提供当前子组件里面的数据
+        return this.props.render(this.state)
+    }
+}
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                App
+                <Mouse render={mouse => {
+                    return <p>X{mouse.x}Y{mouse.y}</p>
+                }}/>
+            </div>
+        )
+    }
+}
+ReactDOM.render(<App />,document.getElementById('root'))
+```
+
+## children代替render属性
+
+- 注意：并不是该模式叫 render props就必须使用名为render的prop，实际上可以使用任意名称的prop
+- 把prop是一个函数并且告诉组件要渲染什么内容的技术叫做： render props模式
+- 推荐：使用childre代替render属性
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/render-props-children%E6%A8%A1%E5%BC%8F.png)
+
+## 优化代码
+
+- 推荐给render props模式添加props校验
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E4%BC%98%E5%8C%96-%E6%B7%BB%E5%8A%A0%E6%A0%A1%E9%AA%8C.png)
+
+- 
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E4%BC%98%E5%8C%96-%E7%A7%BB%E9%99%A4%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A.png)
+
+
+
+# 高阶组件 （★★★）
+
+## 目标
+
+- 知道高阶组件的作用
+- 能够说出高阶的使用步骤
+
+## 概述
+
+- 目的：实现状态逻辑复用
+- 采用 包装模式
+- 手机：获取保护功能
+- 手机壳：提供保护功能
+- 高阶组件就相当于手机壳，通过包装组件，增强组件功能
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E6%89%8B%E6%9C%BA%E5%A3%B3.png)
+
+## 思路分析
+
+- 高阶组件(HOC、Higher-Order Component) 是一个函数，接收要包装的组件，返回增强后的组件
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6-%E5%87%BD%E6%95%B0.png)
+
+- 高阶组件内部创建了一个类组件，在这个类组件中提供复用的状态逻辑代码，通过prop将复用的状态传递给被包装组件`WrappedComponent`
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6-%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0.png)
+
+## 使用步骤
+
+- 创建一个函数，名称约定以with开头
+- 指定函数参数，参数应该以大写字母开头
+- 在函数内部创建一个类组件，提供复用的状态逻辑代码，并返回
+- 在该组件中，渲染参数组件，同时将状态通过prop传递给参数组件
+- 调用该高阶组件，传入要增强的组件，通过返回值拿到增强后的组件，并将其渲染到页面
+
+**包装函数**
+
+```react
+// 定义一个函数，在函数内部创建一个相应类组件
+function withMouse(WrappedComponent) {
+    // 该组件提供复用状态逻辑
+    class Mouse extends React.Component {
+        state = {
+            x: 0,
+            y: 0
+        }
+        // 事件的处理函数
+        handleMouseMove = (e) => {
+            this.setState({
+                x: e.clientX,
+                y: e.clientY
+            })
+        }
+        // 当组件挂载的时候进行事件绑定
+        componentDidMount() {
+            window.addEventListener('mousemove', this.handleMouseMove)
+        }
+        // 当组件移除时候解绑事件
+        componentWillUnmount() {
+            window.removeEventListener('mousemove', this.handleMouseMove)
+        }
+        render() {
+            // 在render函数里面返回传递过来的组件，把当前组件的状态设置进去
+            return <WrappedComponent {...this.state} />
+        }
+    }
+    return Mouse
+}
+```
+
+**哪个组件需要加强，通过调用`withMouse`这个函数，然后把返回的值设置到父组件中即可**
+
+```react
+function Position(props) {
+    return (
+        <p>
+            X:{props.x}
+            Y:{props.y}
+        </p>
+    )
+}
+// 把position 组件来进行包装
+let MousePosition = withMouse(Position)
+
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            <div>
+                高阶组件
+                <MousePosition></MousePosition>
+            </div>
+        )
+    }
+}
+```
+
+## 设置`displayName`
+
+- 使用高阶组件存在的问题：得到两个组件的名称相同
+- 原因：默认情况下，React使用组件名称作为`displayName`
+- 解决方式：为高阶组件设置`displayName`，便于调试时区分不同的组件
+- `displayName的作用：用于设置调试信息(React Developer Tools信息)`
+- 设置方式：
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6-displayName.png)
+
+## 传递props
+
+- 问题：如果没有传递props，会导致props丢失问题
+- 解决方式： 渲染`WrappedComponent`时，将state和props一起传递给组件
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E4%BC%A0%E9%80%92props.png)
+
+## 小结
+
+- 组件通讯是构建React应用必不可少的一环
+- props的灵活性让组件更加强大
+- 状态提升是React组件的常用模式
+- 组件生命周期有助于理解组件的运行过程
+- 钩子函数让开发者可以在特定的时机执行某些功能
+- `render props` 模式和高阶组件都可以实现组件状态逻辑的复用
+- 组件极简模型： `(state,props) => UI`
+
+# React原理
+
+## 目标
+
+- 能够知道`setState()`更新数据是异步的
+- 能够知道JSX语法的转化过程
+
+## `setState()`说明 （★★★）
+
+### 更新数据
+
+- `setState()`更新数据是异步的
+- 注意：使用该语法，后面的`setState`不要依赖前面`setState`的值
+- 多次调用`setState`，只会触发一次render
+
+### 推荐语法 
+
+- 推荐：使用 `setState((state,props) => {})` 语法
+- 参数state： 表示最新的state
+- 参数props： 表示最新的props
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E6%8E%A8%E8%8D%90%E8%AF%AD%E6%B3%95.png)
+
+
+
+### 第二个参数
+
+- 场景：在状态更新(页面完成重新渲染)后立即执行某个操作
+- 语法：`setState(update[,callback])`
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%8F%82%E6%95%B0.png)
+
+## JSX语法的转化过程 （★★★）
+
+- JSX仅仅是`createElement()` 方法的语法糖(简化语法)
+- JSX语法被 @babel/preset-react 插件编译为`createElement()` 方法
+- React 元素： 是一个对象，用来描述你希望在屏幕上看到的内容
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day03/%E7%AC%94%E8%AE%B0/images/%E8%AF%AD%E6%B3%95%E7%B3%96.png)
+
+
+
+# React原理揭秘
+
+## 目标
+
+- 能够说出React组件的更新机制
+- 能够对组件进行性能优化
+- 能够说出虚拟DOM和DIff算法
+
+## 组件更新机制
+
+- setState() 的两个作用
+  - 修改state
+  - 更新组件
+- 过程：父组件重新渲染时，也会重新渲染子组件，但只会渲染当前组件子树（当前组件以其所有子组件）
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E7%BB%84%E4%BB%B6%E6%9B%B4%E6%96%B0.png)
+
+## 组件性能优化
+
+### 减轻state
+
+- 减轻state：只存储跟组件渲染相关的数据（比如：count/ 列表数据 /loading等）
+- 注意：不用做渲染的数据不要放在state中
+- 对于这种需要在多个方法中用到的数据，应该放到this中
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E5%87%8F%E8%BD%BBstate.png)
+
+### 避免不必要的重新渲染
+
+- 组件更新机制：父组件更新会引起子组件也被更新，这种思路很清晰
+- 问题：子组件没有任何变化时也会重新渲染
+- 如果避免不必要的重新渲染？
+- 解决方式：使用钩子函数 shouldComponentUpdate(nextProps, nextState)
+  - 在这个函数中，nextProps和nextState是最新的状态以及属性
+- 作用：这个函数有返回值，如果返回true，代表需要重新渲染，如果返回false，代表不需要重新渲染
+- 触发时机：更新阶段的钩子函数，组件重新渲染前执行(shouldComponentUpdate => render)
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/shouldComponentUpdata.png)
+
+#### 随机数案例
+
+需求：随机生成数字，显示在页面，如果生成的数字与当前显示的数字相同，那么就不需要更新UI，反之更新UI。
+
+利用nextState参数来判断当前组件是否需要更新
+
+```react
+class App extends React.Component {
+    state = {
+        number: 0
+    }
+    // 点击事件，每次点击生成一个随机数
+    hanldeBtn = () => {
+        this.setState({
+            number: Math.floor(Math.random() * 3)
+        })
+    }
+    // 将要更新UI的时候会执行这个钩子函数
+    shouldComponentUpdate(nextProps,nextState) {
+         // 判断一下当前生成的 值是否与页面的值相等
+         if(nextState.number !== this.state.number){
+             return true
+         }
+         return false
+    }
+    render() {
+        return (
+            <div>
+                随机数：{this.state.number} <br />
+                <button onClick={this.hanldeBtn}>生成随机数</button>
+            </div>
+        )
+    }
+}
+```
+
+利用props参数来判断是否需要进行更新
+
+```react
+class App extends React.Component {
+    state = {
+        number: 0
+    }
+    // 点击事件，每次点击生成一个随机数
+    hanldeBtn = () => {
+        this.setState({
+            number: Math.floor(Math.random() * 3)
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <NumberBox number={this.state.number} />
+                <button onClick={this.hanldeBtn}>生成随机数</button>
+            </div>
+        )
+    }
+}
+class NumberBox extends React.Component {
+    // 将要更新UI的时候会执行这个钩子函数
+    shouldComponentUpdate(nextProps, nextState) {
+        // 判断一下当前生成的 值是否与页面的值相等
+        if (nextProps.number !== this.props.number) {
+            return true
+        }
+        return false
+    }
+    render() {
+        return (
+            <h1>随机数：{this.props.number} </h1>
+        )
+    }
+}
+```
+
+### 纯组件
+
+#### 作用以及使用
+
+- 纯组件： PureComponent 与 React.Component 功能相似
+- 区别： PureComponent 内部自动实现了 shouldComponentUpdate钩子，不需要手动比较
+- 原理：纯组件内部通过分别比对前后两次 props和state的值，来决定是否重新渲染组件
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/PureComponent.png)
+
+#### 实现原理
+
+- 说明：纯组件内部的对比是 shallow compare（浅层对比）
+- 对于值类型来说：比较两个值是否相同
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%AF%94%E5%AF%B9.png)
+
+- 引用类型：只比对对象的引用地址是否相同
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E6%AF%94%E5%AF%B9.png)
+
+- 注意：state 或 props 中属性值为引用类型时，应该创建新数据，不要直接修改原数据
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E6%B3%A8%E6%84%8F%E7%82%B9.png)
+
+## 虚拟DOM和Diff算法
+
+- React更新视图的思想是：只要state变化就重新渲染视图
+- 特点：思路非常清晰
+- 问题：组件中只有一个DOM元素需要更新时，也得把整个组件的内容重新渲染吗？ 不是这样的
+- 理想状态：部分更新，只更新变化的地方
+- React运用的核心点就是 虚拟DOM 配合 Diff 算法
+
+### 虚拟DOM
+
+本质上就是一个JS对象，用来描述你希望在屏幕上看到的内容
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E8%99%9A%E6%8B%9FDOM.png)
+
+### Diff算法
+
+执行过程
+
+- 初次渲染时，React会根据初始化的state（model），创建一个虚拟DOM对象（树）
+- 根据虚拟DOM生成真正的DOM，渲染到页面
+- 当数据变化后(setState())，会重新根据新的数据，创建新的虚拟DOM对象（树）
+- 与上一次得到的虚拟DOM对象，使用Diff算法比对（找不同），得到需要更新的内容
+- 最终，React只将变化的内容更新（patch）到DOM中，重新渲染到页面
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/diff%E7%AE%97%E6%B3%95.png)
+
+### 代码演示
+
+- 组件render()调用后，根据状态和JSX结构生成虚拟DOM对象(render()方法的调用并不意味着浏览器进行渲染，render方法调用时意味着Diff算法开始比对了)
+- 示例中，只更新p元素的文本节点内容
+- 初次渲染的DOM对象
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E5%88%9D%E6%AC%A1%E7%9A%84%E8%99%9A%E6%8B%9FDOM%E5%AF%B9%E8%B1%A1.png)
+
+- 数据更新之后的虚拟DOM对象
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E6%9B%B4%E6%96%B0%E5%90%8E%E7%9A%84%E8%99%9A%E6%8B%9FDOM%E5%AF%B9%E8%B1%A1.png)
+
+## 小结
+
+- 工作角度：应用第一，原理第二
+- 原理有助于更好的理解React的自身运行机制
+- setState() 异步更新数据
+- 父组件更新导致子组件更新，纯组件提升性能
+- 思路清晰简单为前提，虚拟DOM和Diff保效率（渲染变化的组件）
+- 虚拟DOM -> state + JSX
+- 虚拟DOM最大的特点是 脱离了浏览器的束缚，也就是意味着只要是能支持js的地方都可以用到react，所以为什么说react是可以进行跨平台的开发
+
+# React路由基础
+
+## 目标
+
+- 能够说出React路由的作用
+- 能够掌握-react-router-dom的基本使用
+- 能够使用编程式导航跳转路由
+- 能够知道React路由的匹配模式
+
+## React路由介绍
+
+现代的前端应用大多数是SPA（单页应用程序），也就是只有一个HTML页面的应用程序。因为它的用户体验更好、对服务器压力更小，所以更受欢迎。为了有效的使用单个页面来管理多页面的功能，前端路由应运而生。
+
+- 前端路由功能：让用户从一个视图（页面）导航到另一个视图（页面）
+- 前端路由是一套映射规则，在React中，是URL路径与组件的对应关系
+- 使用React路由简单来说，就是配置路径和组件
+
+## 路由的基本使用
+
+### 使用步骤
+
+- 安装： yarn add react-router-dom
+
+  - 如果没有安装yarn工具的，需要先全局安装一下yarn：npm install -g yarn
+
+- 导入路由的三个核心组件： Router / Route / Link
+
+  ```react
+  import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+  ```
+
+- 使用Router 组件包裹整个应用
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/Router.png)
+
+- 使用Link组件作为导航菜单（路由入口）
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/link%E5%85%A5%E5%8F%A3.png)
+
+- 使用Route组件配置路由规则和要展示的组件（路由出口）
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/route.png)
+
+### 常用组件说明
+
+- **Router组件：**包裹整个应用，一个React应用只需要使用一次
+  - 两种常用的Router： HashRouter和BrowserRouter
+  - HashRouter： 使用URL的哈希值实现 （localhost:3000/#/first）
+  - 推荐 BrowserRouter：使用H5的history API实现（localhost3000/first）
+- **Link组件：**用于指定导航链接（a标签）
+  - 最终Link会编译成a标签，而to属性会被编译成 a标签的href属性
+- **Route组件：**指定路由展示组件相关信息
+  - path属性：路由规则，这里需要跟Link组件里面to属性的值一致
+  - component属性：展示的组件
+  - Route写在哪，渲染出来的组件就在哪
+
+### 路由的执行过程
+
+- 当我们点击Link组件的时候，修改了浏览器地址栏中的url
+- React路由监听地址栏url的变化
+- React路由内部遍历所有的Route组件，拿着Route里面path规则与pathname进行匹配
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/route%E5%8C%B9%E9%85%8D.png)
+
+- 当路由规则（path）能够匹配地址栏中的pathname时，就展示该Route组件的内容
+
+### 编程式导航
+
+- **场景：**点击登陆按钮，登陆成功后，通过代码跳转到后台首页，如何实现？
+- **编程式导航：**通过JS代码来实现页面跳转
+- history是React路由提供的，用于获取浏览器历史记录的相关信息
+- **push(path)：**跳转到某个页面，参数path表示要跳转的路径
+- go(n)：前进或后退功能，参数n表示前进或后退页面数量
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA.png)
+
+### 默认路由
+
+- 现在的路由都是通过点击导航菜单后展示的，如果进入页面的时候就主动触发路由呢
+- 默认路由：表示进入页面时就会匹配的路由
+- 默认路由：只需要把path设置为 `'/'`
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1.png)
+
+### 匹配模式
+
+#### 模糊匹配模式
+
+- 当Link组件的to属性值为 '/login' 时候，为什么默认路由也被匹配成功？
+- 默认情况下，React路由是模糊匹配模式
+- 模糊匹配规则：只要pathname以path开头就会匹配成功
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%BC%8F.png)
+
+#### 精准匹配
+
+- 默认路由认可情况下都会展示，如果避免这种问题？
+- 给Route组件添加exact属性，让其变为**精准匹配模式**
+- 精确匹配：只有当path和pathname完全匹配时才会展示改路由
+
+![](E:/%E8%A7%86%E9%A2%91%E8%B5%84%E6%96%99/%E5%AF%BC%E5%B8%88%E8%B5%84%E6%96%99/React%E6%88%90%E9%83%BD3%E6%9C%9F/day04/%E7%AC%94%E8%AE%B0/images/%E7%B2%BE%E7%A1%AE%E5%8C%B9%E9%85%8D.png)
+
+### 小结
+
+- React路由可以有效的管理多个视图实现 SPA
+- 路由先需要通过安装
+- Router组件包裹整个应用，只需要使用一次
+- Link组件是入口，Route组件是出口
+- 通过props.history实现编程式导航
+- 默认是模糊匹配，添加exact编程精确匹配
+- React路由的一切都是组件，可以像思考组件一样思考路由
