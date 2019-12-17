@@ -1,0 +1,8 @@
+react-virtualized  可视图区域渲染   渲染的列表{
+
+- 在项目中的应用：
+实现城市选择列表页面的渲染
+- react-virtualized 是React组件，
+用来高效渲染大型列表和表格数据
+- GitHub地址： react-virtualized
+}
