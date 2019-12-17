@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ul">
+    </ul>
+
+    <script>
+        // 获取ul节点
+        let ul = document.getElementById('ul')
+        // 自定义字母表颜色
+        const colorArr = [
+            {code: "q", color: "red"},
+            {code: "w", color: "blue"},
+            {code: "e", color: "yellow"},
+            {code: "f", color: "skyblue"},
+            {code: "y", color: "green"},
+            {code: "h", color: "pink"},
+            {code: "j", color: "purple"},
+            {code: "k", color: "gray"},
+            {code: "h", color: "orange"},
+        ]
+        // 需要展示的字母条目
+        const arr = [["q","w","e","f","y","h"],["j","k","f","y","h","w","e",],["j","k","n"]]
+
+        // 遍历展示的条目
+        for (let i = 0; i < arr.length; i++) {
+            // 创建条目对应的li
+            var li = document.createElement("li")
+            // 遍历子条目的字母
+            for (let j = 0; j < arr[i].length; j++) {
+                // 创建子条目对应的a
+                var a = document.createElement("a")
+                // 渲染a的内容
+                a.innerHTML = arr[i][j]
+                // 渲染不同字母的颜色
+                // 方法一
+                // for (let k = 0; k < colorArr.length; k++) {
+                //     if (colorArr[k].code === arr[i][j]) {
+                //         a.style.color = colorArr[k].color
+                //     }
+                // }
+                // 方法二
+                colorArr.map(item => item.code === arr[i][j] && (a.style.color = item.color))
+                // 将创建的a追加进li
+                li.append(a)
+            }
+            // 将创建的li追加进ul
+            ul.append(li)
+        }
+    </script>
+</body>
+</html>
